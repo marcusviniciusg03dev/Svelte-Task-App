@@ -1,22 +1,16 @@
 <script lang="ts">
-  
+import Todos from "./Components/todos.svelte";  
 </script>
 
 <header>
-  header
+  <h3 id="logo">Your tasks</h3>
 </header>
 
 <main>
-  main content
+  <Todos />
 </main>
 
 <style>
-  :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      font-size: 1rem;
-  }
-
   header {
     display: flex;
     align-items: center;
@@ -25,7 +19,12 @@
 
   main {
     display: flex;
-    align-items: center;
     justify-content: center;
+    padding: 2rem;
+  }
+
+  #logo {
+    color: #FF6900;
+    user-select: none;
   }
 </style>
