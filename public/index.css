@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+#app {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1.5fr 9.5fr;
+    background-color: #F7CFB3;
+}
