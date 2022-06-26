@@ -10,7 +10,8 @@ const handleAddTask = (e: SubmitEvent) => {
 
     if (!taskTitle) return;
 
-    addTask({ id: Math.random(), title: taskTitle, date: new Date() });
+    addTask({ id: Math.random(), title: taskTitle, date: new Date(), done: false });
+    
     taskTitle = '';
 }
 
@@ -33,10 +34,22 @@ const deleteTask = (id: number) => $tasks = $tasks.filter(task => task.id !== id
         />
     </form>
     <div id="tasks-list">
-        <h4>To do ({$tasks.length})</h4>
+        <h4>To do ({$tasks.filter(task => !task.done).length})</h4>
         {#each $tasks as task}
         <div class="task">
-            <h4>{task.title}</h4>
+            <input
+                id={"checkbox-for-task#" + task.id}
+                type="checkbox"
+                class="check-task"
+                checked={task.done}
+                on:change={(e) => {
+                    task.done = !task.done;
+                }}
+            />
+            <label class="custom-checkbox-input" for={"checkbox-for-task#" + task.id}>
+                <i class="mi mi-check"></i>
+            </label>
+            <b class={task.done ? "task-done task-title" : "task-title"}>{task.title}</b>
             <button class="delete-task-button" on:click={() => deleteTask(task.id)}>
                 <i class="mi mi-close"></i>
             </button>
@@ -60,10 +73,17 @@ const deleteTask = (id: number) => $tasks = $tasks.filter(task => task.id !== id
     #new-task-input {
         padding: 1rem;
         font-size: 1rem;
-        border: 1px solid #FF690050;
         font-weight: 500;
         border-radius: 1rem;
         width: 25rem;
+        border: 0;
+        background-color: #111;
+        color: #909090;
+        outline: 0;
+    }
+
+    #new-task-input::placeholder {
+        color: #909090;
     }
 
     #tasks-list {
@@ -77,7 +97,6 @@ const deleteTask = (id: number) => $tasks = $tasks.filter(task => task.id !== id
         font-weight: 500;
         margin: 10px;
         display: flex;
-        justify-content: space-between;
         align-items: center;
     }
 
@@ -87,5 +106,44 @@ const deleteTask = (id: number) => $tasks = $tasks.filter(task => task.id !== id
         justify-content: center;
         border: 0;
         background-color: transparent;
+    }
+
+    .check-task {
+        display: none;
+    }
+
+    .check-task:checked + .custom-checkbox-input {
+        background-color: #36ad3f;
+    }
+
+    .custom-checkbox-input .mi-check {
+        color: #FFF;
+    }
+
+    .check-task + .custom-checkbox-input .mi-check {
+        display: none;
+    }
+
+    .check-task:checked + .custom-checkbox-input .mi-check {
+        display: block;
+    }
+
+    .custom-checkbox-input {
+        height: 20px;
+        width: 20px;
+        border: 1px solid rgb(189, 189, 189);
+        border-radius: 62.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .task-done {
+        text-decoration: line-through;
+    }
+
+    .task-title {
+        margin: auto auto auto 1em;
     }
 </style>

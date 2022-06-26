@@ -24,7 +24,10 @@ import Todos from "./Components/todos.svelte";
   }
 
   #logo {
-    color: #FF6900;
+    color: #ffffff;
+    padding: 1rem 2rem;
+    background: #36ad3f;
     user-select: none;
+    border-radius: 1rem;
   }
 </style>
