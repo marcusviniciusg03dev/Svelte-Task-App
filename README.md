@@ -1,3 +1,3 @@
 ## Svelte Task App
 
-![Task Application](https://user-images.githubusercontent.com/84883298/175878093-9611890a-b630-47c7-ac7a-a042fbcf6b83.jpg)
+![Task application](https://user-images.githubusercontent.com/84883298/175878189-1f918fa6-96d5-4ff3-b703-271ac73c621c.jpg)
