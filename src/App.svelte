@@ -3,7 +3,7 @@ import Todos from "./Components/todos.svelte";
 </script>
 
 <header>
-  <h3 id="logo">Your tasks</h3>
+  <img src="/logo.svg" id="logo" alt="task-app-logo" />
 </header>
 
 <main>
@@ -25,9 +25,8 @@ import Todos from "./Components/todos.svelte";
 
   #logo {
     color: #ffffff;
-    padding: 1rem 2rem;
-    background: #36ad3f;
     user-select: none;
-    border-radius: 1rem;
+    width: auto;
+    width: 5em;
   }
 </style>

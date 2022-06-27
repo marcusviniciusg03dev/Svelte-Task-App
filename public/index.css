@@ -13,8 +13,13 @@ html, body {
 #app {
     height: 100vh;
     display: grid;
-    grid-template-rows: 1.5fr 9.5fr;
-    background-color: #e3f7b3;
+    grid-template-rows: 15% 85%;
+    background-color: #161714;
+    color: #dedede;
+}
+
+i {
+    color: #dedede;
 }
 
 button, a {

@@ -8,14 +8,14 @@ import { tasks } from "../store/tasks";
 const handleAddTask = (e: SubmitEvent) => {
     e.preventDefault();
 
-    if (!taskTitle) return;
+    if (!taskTitle.trim()) return;
 
     addTask({ id: Math.random(), title: taskTitle, date: new Date(), done: false });
     
     taskTitle = '';
 }
 
-const addTask = (task: ITask) => $tasks = [...($tasks || []), task];
+const addTask = (task: ITask) => $tasks = [...($tasks || []), { ...task, title: task.title.trim() }];
 
 const deleteTask = (id: number) => $tasks = $tasks.filter(task => task.id !== id);
 
@@ -51,7 +51,7 @@ const deleteTask = (id: number) => $tasks = $tasks.filter(task => task.id !== id
             </label>
             <b class={task.done ? "task-done task-title" : "task-title"}>{task.title}</b>
             <button class="delete-task-button" on:click={() => deleteTask(task.id)}>
-                <i class="mi mi-close"></i>
+                <i class="mi mi-delete"></i>
             </button>
         </div>
         {/each}
@@ -59,8 +59,16 @@ const deleteTask = (id: number) => $tasks = $tasks.filter(task => task.id !== id
 </div>
 
 <style>
-    #box {
-        width: 30rem;
+    @media only screen and (min-width: 400px) {
+        #box {
+            width: 20rem;
+        }
+    }
+
+    @media only screen and (min-width: 800px) {
+        #box {
+            width: 30rem;
+        }
     }
 
     #new-task-box {
@@ -75,9 +83,8 @@ const deleteTask = (id: number) => $tasks = $tasks.filter(task => task.id !== id
         font-size: 1rem;
         font-weight: 500;
         border-radius: 1rem;
-        width: 25rem;
-        border: 0;
-        background-color: #111;
+        background-color: #11111173;
+        border: 1px solid #99999930;
         color: #909090;
         outline: 0;
     }
@@ -92,11 +99,13 @@ const deleteTask = (id: number) => $tasks = $tasks.filter(task => task.id !== id
     }
 
     .task {
-        background: #ffffff38;
+        background: #1c1c1c;
+        border: 2px solid #5bff23;
         padding: 10px;
         font-weight: 500;
         margin: 10px;
         display: flex;
+        border-radius: 0.4rem;
         align-items: center;
     }
 
